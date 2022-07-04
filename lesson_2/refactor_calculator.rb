@@ -8,32 +8,31 @@ end
 
 def operation_to_message(operator)
   result = case operator
-  when '1'
-    "adding"
-  when '2'
-    "substracting"
-  when '3'
-    "multiplying"
-  when '4'
-    "dividing"
-  end
+           when '1'
+             "adding"
+           when '2'
+             "substracting"
+           when '3'
+             "multiplying"
+           when '4'
+             "dividing"
+           end
   result
 end
 
 prompt("Welcome to Calculator! Enter your name:")
 name = ''
-loop {
+loop do
   name = Kernel.gets().chomp()
   if name.empty?()
     prompt("Make sure to use a valid name.")
   else
     break
   end
-}
+end
 
 prompt("Hi #{name}")
 loop do
-
   number1 = ''
   loop do
     prompt("What's the first number?")
@@ -89,7 +88,7 @@ loop do
              number1.to_i() * number2.to_i()
            when '4'
              number1.to_f() / number2.to_f()
-  end
+           end
 
   prompt("The result is #{result}")
 
