@@ -1,10 +1,20 @@
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def valid_number?(num)
-  num.to_i != 0
+def valid_integer?(num)
+  /^-?\d+$/.match(num)
 end
+
+def valid_float?(num)
+  /^-?\d+\.?\d*$/.match(num)
+end
+
+def valid_number?(num)
+  valid_integer?(num) || valid_float?(num)
+end
+
 
 def operation_to_message(operator)
   result = case operator
@@ -20,12 +30,21 @@ def operation_to_message(operator)
   result
 end
 
-prompt("Welcome to Calculator! Enter your name:")
+
+
+# Begin
+file = File.open("messages.txt")
+messages = file.readlines.map(&:chomp)
+
+
+# prompt("Welcome to Calculator! Enter your name:")
+prompt(messages[0])
 name = ''
 loop do
   name = Kernel.gets().chomp()
   if name.empty?()
-    prompt("Make sure to use a valid name.")
+    # prompt("Make sure to use a valid name.")
+    prompt(messages[1])
   else
     break
   end
