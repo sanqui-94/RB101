@@ -1,4 +1,4 @@
-VALID_CHOICES = ['rock', 'paper', 'scissors']
+VALID_CHOICES = %w(rock paper scissors)
 
 def test_method
   prompt('test message')
@@ -12,14 +12,16 @@ def prompt(message)
   puts ">> #{message}"
 end
 
-def display_results(choice, computer_choice)
-  if (choice == 'rock' && computer_choice == 'scissors') ||
-     (choice == 'paper' && computer_choice == 'rock') ||
-     (choice == 'scissors' && computer_choice == 'paper')
+def win?(first, second)
+  (first == 'rock' && second == 'scissors') ||
+    (first == 'paper' && second == 'rock') ||
+    (first == 'scissors' && second == 'paper')
+end
+
+def display_results(player, computer)
+  if win?(player, computer)
     prompt 'You won'
-  elsif (computer_choice == 'rock' &&  choice == 'scissors') ||
-        (computer_choice == 'paper' && choice == 'rock') ||
-        (computer_choice == 'scissors' && choice == 'paper')
+  elsif win?(computer, player)
     prompt 'Computer won'
   else
     prompt "It's a draw"
